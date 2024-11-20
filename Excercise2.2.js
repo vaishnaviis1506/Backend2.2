@@ -277,10 +277,7 @@ app.get('/hotels/filter/category', (req, res) => {
 app.get('/hotels', (req, res) => {
   res.json({ hotels });
 });
-// Endpoint 7: Send all hotels
-app.get('/hotels', (req, res) => {
-  res.json({ hotels });
-}); 
+
 
 
 // Start server
