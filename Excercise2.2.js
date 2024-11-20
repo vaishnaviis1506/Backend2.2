@@ -1,3 +1,6 @@
+
+
+
 const express = require('express');
 const cors = require('cors');
 
@@ -210,7 +213,7 @@ let hotels = [
   },
 ];
 
-// Endpoint 1: Sort by pricing
+
 app.get('/hotels/sort/pricing', (req, res) => {
   const { pricing } = req.query;
   let result = [...hotels];
@@ -274,13 +277,18 @@ app.get('/hotels/filter/category', (req, res) => {
 app.get('/hotels', (req, res) => {
   res.json({ hotels });
 });
+// Endpoint 7: Send all hotels
+app.get('/hotels', (req, res) => {
+  res.json({ hotels });
+}); 
+
 
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-/* 
+/*
 /hotels/sort/pricing?pricing=low-to-high
 /hotels/sort/rating?rating=high-to-low
 /hotels/sort/reviews?reviews=most-to-least
