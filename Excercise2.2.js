@@ -1,6 +1,3 @@
-
-
-
 const express = require('express');
 const cors = require('cors');
 
@@ -214,15 +211,23 @@ let hotels = [
 ];
 
 
+
+//1 Sort By Pricing
 app.get('/hotels/sort/pricing', (req, res) => {
   const { pricing } = req.query;
-  let result = [...hotels];
 
-  result.sort((a, b) =>
-    pricing === 'low-to-high' ? a.price - b.price : b.price - a.price
-  );
-  res.json({ hotels: result });
+  if (!pricing || (pricing !== 'low-to-high' && pricing !== 'high-to-low')) {
+    return res.status(400).json({ error: 'Invalid or missing "pricing" query parameter.' });
+  }
+
+  // Sort hotels based on the pricing condition
+  const sortedHotels = [...hotels].sort((a, b) => {
+    return pricing === 'low-to-high' ? a.price - b.price : b.price - a.price;
+  });
+
+  res.json(sortedHotels);
 });
+
 
 // Endpoint 2: Sort by rating
 app.get('/hotels/sort/rating', (req, res) => {
